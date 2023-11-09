@@ -36,4 +36,7 @@ Route::get('spatie', function () {
     return '<h1> ASISTEN KO </h1>';
 })->middleware(['auth', 'verified', 'role:asisten|admin']);
 
+Route::get('dashboard', function () {
+    return view('dashboard');
+});
 require __DIR__.'/auth.php';
