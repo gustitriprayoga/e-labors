@@ -15,26 +15,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.frontend.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::get('/dashboard', function () {
+    //     return view('pages.backend.auth.profile.index');
+    // })->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('profile.index');
+    Route::get('profile', [ProfileController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('profile.index');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('admin', function () {
     return '<h1> ADMIN KO </h1>';
-})->middleware(['auth', 'verified', 'role:admin']);
+})->middleware(['auth', 'verified', 'permision:admin']);
 
 Route::get('spatie', function () {
     return '<h1> ASISTEN KO </h1>';
-})->middleware(['auth', 'verified', 'role:asisten|admin']);
+})->middleware(['auth', 'verified', 'role:asisten']);
 
 Route::get('dashboard', function () {
     return view('dashboard');

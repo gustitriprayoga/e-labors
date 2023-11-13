@@ -15,10 +15,19 @@
 <!-- Dashboard 1 -->
 <script src="{{ asset('asset/backend/js/dashboard/dashboard-1.js') }}"></script>
 
-<script src="{{ asset('vendor/owl-carousel/owl.carousel.js') }}"></script>
+<script src="{{ asset('asset/backend/vendor/owl-carousel/owl.carousel.js') }}"></script>
 
 <script src="{{ asset('asset/backend/js/custom.min.js') }}"></script>
 <script src="{{ asset('asset/backend/js/dlabnav-init.js') }}"></script>
+
+ <!-- Datatable -->
+ <script src="{{asset('asset/backend/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+ <script src="{{asset('asset/backend/js/plugins-init/datatables.init.js')}}"></script>
+
+ <script src="{{asset('asset/backend/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+
+ <script src="{{asset('asset/backend/js/custom.min.js')}}"></script>
+ <script src="{{asset('js/dlabnav-init.js')}}"></script>
 
 
 <script>

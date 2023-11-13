@@ -42,22 +42,16 @@
     <div id="main-wrapper">
         @include('layouts.backend.body.headers');
 
-        @include('layouts.backend.body.sidebar');
+        @include('layouts.backend.body.sidebars');
 
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="row">
-                            <div class="col-xl-12">
+                
 
                                 @yield('content');
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            
             </div>
         </div>
 
@@ -66,5 +60,6 @@
 
     @include('layouts.backend.scripts')
     @include('sweetalert::alert')
+
 
 </body>

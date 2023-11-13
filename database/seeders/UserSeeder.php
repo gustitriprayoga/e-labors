@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('admin123'),
         ]);
         $admin->assignRole('admin');
 
@@ -24,9 +24,18 @@ class UserSeeder extends Seeder
             'name' => 'Asisten',
             'username' => 'Asisten',
             'email' => 'asisten@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('asisten123'),
         ]);
 
         $asisten->assignRole('asisten');
+
+        $user1 = \App\Models\User::create([
+            'name' => 'qori',
+            'username' => '1855201012',
+            'email' => 'qori@gmail.com',
+            'password' => bcrypt('qori1234'),
+        ]);
+
+        $user1->assignRole('user');
     }
 }
