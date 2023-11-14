@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Labor;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class LaborController extends Controller
 {
@@ -43,11 +45,14 @@ class LaborController extends Controller
             $fotoPath = $request->file('foto_labor')->store('foto_labors');
             $input['foto_labor'] = $fotoPath;
         }
+        try {
+            Labor::create($input);
+        } catch (\Throwable $th) {
+            return redirect()->route('labor.index')->with('toast_error', 'Task Created Successfully!');
+        }
 
-        Labor::create($input);
+        return redirect()->route('labor.index')->with('toast_success', 'Task Created Successfully!');
 
-        return redirect()->route('labor.index')
-            ->with('toast_success', 'Laboratorium Berhasil Di Tambahkan!');
     }
 
     /**
@@ -90,7 +95,7 @@ class LaborController extends Controller
         $labor->update($input);
 
         return redirect()->route('labor.index')
-        ->with('toast_success', 'Laboratorium Berhasil Di Update!');
+            ->with('toast_success', 'Laboratorium Berhasil Di Update!');
     }
 
     /**

@@ -1,54 +1,87 @@
 @extends('layouts.backend.masters')
 @section('title', 'Tambah Labor')
 @section('content')
-    <div class="row page-titles">
+<!-- Row -->
+<div class="page-header mb-4 mt-4">
+    <h1 class="page-title">Tambah Labor</h1>
+    <div>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Labor</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah</li>
         </ol>
     </div>
+</div>
+{{-- ROW END --}}
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Tambah Data Labor</h4>
-            <a class="btn btn-primary btn-sm" href="{{ route('labors.index') }}">Tambah Data</a>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('labors.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-    
-                <div class="form-group">
-                    <label for="nama_labor">Nama Laboratorium:</label>
-                    <input type="text" name="nama_labor" class="form-control" required>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="">
+                <div class="card">
+                    <div class="card-header">{{ __('Tambah Labor') }}</div>
+
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('labors.store') }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="form-group row">
+                                <label for="nama_labor" class="col-md-4 col-form-label">{{ __('Nama Labor') }}</label>
+
+                                <div class="">
+                                    <input id="nama_labor" type="text" class="form-control" name="nama_labor" required autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="lokasi_labor" class="col-md-4 col-form-label ">{{ __('Lokasi Labor') }}</label>
+
+                                <div class=" ">
+                                    <input id="lokasi_labor" type="text" class="form-control" name="lokasi_labor" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="description" class="col-md-4 col-form-label ">{{ __('Deskripsi') }}</label>
+
+                                <div class=" ">
+                                    <textarea id="description" class="form-control" name="description" rows="4"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="kapasitas_labor" class="col-md-4 col-form-label ">{{ __('Kapasitas Labor') }}</label>
+
+                                <div class=" ">
+                                    <input id="kapasitas_labor" type="text" class="form-control" name="kapasitas_labor" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="status_labor" class="col-md-4 col-form-label ">{{ __('Status Labor') }}</label>
+
+                                <div class=" ">
+                                    <input id="status_labor" type="text" class="form-control" name="status_labor" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="foto_labor" class="col-md-4 col-form-label ">{{ __('Foto Labor') }}</label>
+
+                                <div class=" ">
+                                    <input id="foto_labor" type="file" class="form-control" name="foto_labor">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <div class="  offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Tambah Labor') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-    
-                <div class="form-group">
-                    <label for="lokasi_labor">Lokasi Laboratorium:</label>
-                    <input type="text" name="lokasi_labor" class="form-control" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="description">Deskripsi:</label>
-                    <textarea name="description" class="form-control"></textarea>
-                </div>
-    
-                <div class="form-group">
-                    <label for="kapasitas_labor">Kapasitas Laboratorium:</label>
-                    <input type="text" name="kapasitas_labor" class="form-control" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="status_labor">Status Laboratorium:</label>
-                    <input type="text" name="status_labor" class="form-control" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="foto_labor">Foto Laboratorium:</label>
-                    <input type="file" name="foto_labor" class="form-control-file">
-                </div>
-    
-                <button type="submit" class="btn btn-primary">Tambah Laboratorium</button>
-            </form>
+            </div>
         </div>
     </div>
 @endsection
