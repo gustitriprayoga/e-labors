@@ -4,11 +4,11 @@
     <div class="app-sidebar">
         <div class="side-header">
             <a class="header-brand1" href="/">
-                <img src="{{asset('backend/assets/images/brand/logo-white.png')}}" class="header-brand-img desktop-logo" alt="logo">
-                <img src="{{asset('backend/assets/images/brand/icon-white.png')}}" class="header-brand-img toggle-logo"
+                <img src="{{asset('asset/backend/images/brand/logo-white.png')}}" class="header-brand-img desktop-logo" alt="logo">
+                <img src="{{asset('asset/backend/images/brand/icon-white.png')}}" class="header-brand-img toggle-logo"
                     alt="logo">
-                <img src="{{asset('backend/assets/images/brand/icon-dark.png')}}" class="header-brand-img light-logo" alt="logo">
-                <img src="{{asset('backend/assets/images/brand/logo-dark.png')}}" class="header-brand-img light-logo1"
+                <img src="{{asset('asset/backend/images/brand/icon-dark.png')}}" class="header-brand-img light-logo" alt="logo">
+                <img src="{{asset('asset/backend/images/brand/logo-dark.png')}}" class="header-brand-img light-logo1"
                     alt="logo">
             </a>
             <!-- LOGO -->

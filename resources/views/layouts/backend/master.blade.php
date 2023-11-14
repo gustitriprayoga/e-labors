@@ -13,7 +13,7 @@
         content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/brand/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('asset/backend/images/brand/favicon.ico') }}">
 
     <!-- TITLE -->
     <title> Renstra | @yield('title') </title>
@@ -27,7 +27,7 @@
 
     <!-- GLOBAL-LOADER -->
     <div id="global-loader">
-        <img src="{{ asset('backend/assets/images/loader.svg') }}" class="loader-img" alt="Loader">
+        <img src="{{ asset('asset/backend/images/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
 
     <!-- PAGE -->
