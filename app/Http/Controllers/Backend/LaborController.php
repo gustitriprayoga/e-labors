@@ -92,6 +92,7 @@ class LaborController extends Controller
         }
 
         $labor = Labor::findOrFail($id);
+
         $labor->update($input);
 
         return redirect()->route('labor.index')

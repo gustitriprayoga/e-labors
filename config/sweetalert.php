@@ -66,7 +66,7 @@ return [
     |
     */
 
-    'timer' => env('SWEET_ALERT_TIMER', 1000),
+    'timer' => env('SWEET_ALERT_TIMER', 2500),
 
     /*
     |--------------------------------------------------------------------------
@@ -212,13 +212,13 @@ return [
 
     'middleware' => [
 
-        'autoClose' => env('SWEET_ALERT_MIDDLEWARE_AUTO_CLOSE', false),
+        'autoClose' => env('SWEET_ALERT_MIDDLEWARE_AUTO_CLOSE', true),
 
         'toast_position' => env('SWEET_ALERT_MIDDLEWARE_TOAST_POSITION', 'top-end'),
 
         'toast_close_button' => env('SWEET_ALERT_MIDDLEWARE_TOAST_CLOSE_BUTTON', false),
 
-        'timer' => env('SWEET_ALERT_MIDDLEWARE_ALERT_CLOSE_TIME', 1000),
+        'timer' => env('SWEET_ALERT_MIDDLEWARE_ALERT_CLOSE_TIME', 2500),
 
         'auto_display_error_messages' => env('SWEET_ALERT_AUTO_DISPLAY_ERROR_MESSAGES', true),
     ],

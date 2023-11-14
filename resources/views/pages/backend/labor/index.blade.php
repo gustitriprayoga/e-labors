@@ -45,7 +45,7 @@
                                     <td>{{ $labor->status_labor }}</td>
                                     <td>
                                         @if ($labor->foto_labor)
-                                            <img src="{{ asset('/storage/'.$labor->foto_labor) }}" alt="Foto Laboratorium" width="50">
+                                            <img src="{{ asset('/storage/'.$labor->foto_labor) }}" alt="Foto Laboratorium"  width="500" height="500">
                                         @else
                                             No Photo
                                         @endif
