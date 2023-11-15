@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LaborController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\PeminjamanController;
 
 
 ###### DASHBOARD ########
@@ -31,3 +32,9 @@ Route::get('/labors/{id}', [LaborController::class, 'show'])->middleware(['auth'
 ### EDIT ###
 Route::get('/labors/{id}/edit', [LaborController::class, 'edit'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.edit');
 Route::put('/labors/{id}', [LaborController::class, 'update'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.update');
+
+
+##################
+### PEMINJAMAN ###
+##################
+
