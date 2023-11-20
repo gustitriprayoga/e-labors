@@ -3,8 +3,9 @@
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LaborController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\PengajuanLaborController;
+use App\Http\Controllers\Backend\PinjamLaborController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\PeminjamanController;
 
 
 ###### DASHBOARD ########
@@ -23,18 +24,38 @@ Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['aut
 Route::get('labor', [LaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labor.index');
 
 ### STORE ###
-Route::get('/labors/create', [LaborController::class, 'create'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.create');
-Route::post('/labors', [LaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.store');
+Route::get('/admin/labors/create', [LaborController::class, 'create'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.create');
+Route::post('/admin/labors', [LaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.store');
 
 ### SHOW ###
-Route::get('/labors/{id}', [LaborController::class, 'show'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.show');
+Route::get('/admin/labors/{id}', [LaborController::class, 'show'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.show');
 
 ### EDIT ###
-Route::get('/labors/{id}/edit', [LaborController::class, 'edit'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.edit');
-Route::put('/labors/{id}', [LaborController::class, 'update'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.update');
+Route::get('/admin/labors/{id}/edit', [LaborController::class, 'edit'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.edit');
+Route::put('/admin/labors/{id}', [LaborController::class, 'update'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.update');
 
 
 ##################
-### PEMINJAMAN ###
+### PENGAJUAN ####
 ##################
+
+
+
+
+Route::get('/admin/pengajuan_labor', [PengajuanLaborController::class, 'index'])->name('pengajuan_labor_admin.index');
+Route::get('/admin/pengajuan_labor/accept/{id}', [PengajuanLaborController::class, 'accept'])->name('pengajuan_labor_admin.accept');
+Route::get('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'reject'])->name('pengajuan_labor_admin.reject');
+Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengajuan'])->name('pengajuan.status');
+
+###################
+### Peminjaman ####
+###################
+
+### INDEX ###
+// routes/web.php
+Route::get('/pengajuan_labor', [PinjamLaborController::class, 'index'])->name('pengajuan_labor.index');
+Route::post('/pengajuan_labor', [PinjamLaborController::class, 'store'])->name('pengajuan_labor.store');
+
+
+
 

@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('pinjam_labors', function (Blueprint $table) {
+            $table->id();
+        $table->foreignId('labor_id');
+        $table->foreignId('user_id');
+        $table->foreignId('admin_id')->nullable(); // Kolom baru untuk admin_id
+        $table->string('nama_peminjam');
+        $table->date('tanggal_peminjaman');
+        $table->text('keterangan')->nullable();
+        $table->string('status')->default('diajukan');
+        $table->timestamps();
+
+        $table->foreign('labor_id')->references('id')->on('labors');
+        $table->foreign('user_id')->references('id')->on('users');
+        $table->foreign('admin_id')->references('id')->on('users');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('pinjam_labors');
+    }
+};
