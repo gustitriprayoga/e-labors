@@ -24,6 +24,35 @@ class PengajuanLaborController extends Controller
         return view('pages.backend.pengajuan.status_pengajuan', compact('peminjamans'));
     }
 
+    public function accept($id)
+    {
+        $peminjaman = PinjamLabor::find($id);
+        $peminjaman->update(['status' => 'diterima']);
+
+        return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman diterima.');
+    }
+
+    public function reject($id)
+    {
+        $peminjaman = PinjamLabor::find($id);
+        $peminjaman->update(['status' => 'ditolak']);
+
+        return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman ditolak.');
+    }
+
+    public function rejectPeminjaman(Request $request, $id)
+    {
+        $peminjaman = PinjamLabor::findOrFail($id);
+        $peminjaman->status = 'ditolak';
+        $peminjaman->keterangan_reject = $request->input('keterangan_reject');
+        $peminjaman->save();
+
+        // dd($request);
+
+        // Tambahkan logika lain yang mungkin diperlukan, seperti memberi notifikasi, dll.
+
+        return redirect()->back()->with('toast_danger', 'Peminjaman ditolak.');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -43,9 +72,11 @@ class PengajuanLaborController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PengajuanLabor $pengajuanLabor)
+    public function show($id)
     {
-        //
+        $peminjaman = PinjamLabor::findOrFail($id);
+
+        return view('pages.backend.pengajuan.detail', compact('peminjaman'));
     }
 
     /**
@@ -66,21 +97,7 @@ class PengajuanLaborController extends Controller
 
     // Metode lainnya
 
-    public function accept($id)
-    {
-        $peminjaman = PinjamLabor::find($id);
-        $peminjaman->update(['status' => 'diterima']);
 
-        return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman diterima.');
-    }
-
-    public function reject($id)
-    {
-        $peminjaman = PinjamLabor::find($id);
-        $peminjaman->update(['status' => 'ditolak']);
-
-        return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman ditolak.');
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -89,6 +106,4 @@ class PengajuanLaborController extends Controller
     {
         //
     }
-
-
 }

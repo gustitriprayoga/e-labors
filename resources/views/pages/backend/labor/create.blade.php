@@ -66,7 +66,7 @@
                             <div class="form-group row">
                                 <label for="foto_labor" class="col-md-4 col-form-label ">{{ __('Foto Labor') }}</label>
 
-                                <div class=" ">
+                                <div class="">
                                     <input id="foto_labor" type="file" class="form-control" name="foto_labor">
                                 </div>
                             </div>

@@ -15,9 +15,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Laboratorium</th>
                             <th>Nama Peminjam</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Keterangan</th>
+                            <th>Keterangan Tolak</th>
+                            <th>Foto Peminjam</th>
                             <th>Status</th>
                             {{-- <th>Aksi</th> --}}
                         </tr>
@@ -26,9 +29,19 @@
                         @foreach ($peminjamans as $peminjaman)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $peminjaman->labor->nama_labor }}</td>
                                 <td>{{ $peminjaman->nama_peminjam }}</td>
                                 <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                 <td>{{ $peminjaman->keterangan }}</td>
+                                <td>{{ $peminjaman->keterangan_reject ?? 'Sedang Dalam Pengecekan' }}</td>
+                                <td>
+                                    @if ($peminjaman->foto_selfie)
+                                        <img src="{{ asset('/storage/' . $peminjaman->foto_selfie) }}" alt="Foto Peminjam"
+                                            style="max-width: 100px;">
+                                    @else
+                                        Foto tidak tersedia
+                                    @endif
+                                </td>
                                 <td>
                                     @if ($peminjaman->status == 'diajukan')
                                         <span class="btn btn-warning">Diajukan</span>

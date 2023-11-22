@@ -40,11 +40,11 @@ Route::put('/admin/labors/{id}', [LaborController::class, 'update'])->middleware
 ##################
 
 
-
-
 Route::get('/admin/pengajuan_labor', [PengajuanLaborController::class, 'index'])->name('pengajuan_labor_admin.index');
+Route::get('/admin/pengajuan-labor/{id}', [PengajuanLaborController::class, 'show'])->name('pengajuan_labor.show');
 Route::get('/admin/pengajuan_labor/accept/{id}', [PengajuanLaborController::class, 'accept'])->name('pengajuan_labor_admin.accept');
-Route::get('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'reject'])->name('pengajuan_labor_admin.reject');
+// Route::post('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'reject'])->name('pengajuan_labor_admin.reject');
+Route::post('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'rejectPeminjaman'])->name('pengajuan_labor_admin.reject');
 Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengajuan'])->name('pengajuan.status');
 
 ###################
@@ -52,9 +52,10 @@ Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengaj
 ###################
 
 ### INDEX ###
+
 // routes/web.php
-Route::get('/pengajuan_labor', [PinjamLaborController::class, 'index'])->name('pengajuan_labor.index');
-Route::post('/pengajuan_labor', [PinjamLaborController::class, 'store'])->name('pengajuan_labor.store');
+Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->name('pengajuan_labor.index');
+Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->name('pengajuan_labor.store');
 
 
 

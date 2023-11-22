@@ -15,7 +15,7 @@
 
     @role('admin')
         <div class="card">
-            <div class="card-header justify-content-between  ">
+            <div class="card-header justify-content-between">
                 <h4 class="card-title">Peminjaman Table</h4>
                 <a class="btn btn-primary btn-sm" href="{{ route('labors.create') }}">Tambah Data</a>
             </div>

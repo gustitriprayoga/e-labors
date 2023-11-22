@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PinjamLabor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Labor;
 
 class PinjamLaborController extends Controller
 {
@@ -15,7 +16,9 @@ class PinjamLaborController extends Controller
      */
     public function index()
     {
-        return view('pages.backend.user.labor.index');
+        $labors = Labor::all();
+
+        return view('pages.backend.user.labor.index', ['labors' => $labors]);
     }
 
     public function status_pengajuan()
@@ -33,39 +36,64 @@ class PinjamLaborController extends Controller
         //
     }
 
+    public function showForm()
+    {
+        $labors = Labor::all(); // Mengambil semua data laboratorium
+        return view('pages.backend.user.labor.index', ['labors' => $labors]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $request->validate([
-            'labor_id' => 'required', // Pastikan 'labor_id' valid sesuai aturan validasi yang diperlukan
+            'labor_id' => 'required',
             'nama_peminjam' => 'required',
             'tanggal_peminjaman' => 'required|date',
+            'waktu_dipinjam' => 'required',
             'keterangan' => 'nullable',
+            'foto_selfie' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $peminjamanData = $request->all();
+        // Proses pengunggahan foto_selfie
+        $fotoSelfiePath = null;
+        if ($request->hasFile('foto_selfie')) {
+            $fotoSelfiePath = $request->file('foto_selfie')->store('foto_selfies');
+        }
 
-        // Tambahkan user_id
-        $peminjamanData['user_id'] = Auth::id(); // Menyimpan ID pengguna yang sedang masuk
+        // // Upload foto laboratorium jika ada
+        // if ($request->hasFile('foto_labor')) {
+        //     $fotoPath = $request->file('foto_labor')->store('foto_labors');
+        //     $input['foto_labor'] = $fotoPath;
+        // }
 
-        // Misalnya, kamu bisa mendapatkan labor_id dari formulir atau sumber lain
-        // Tambahkan labor_id sesuai kebutuhan
-        $peminjamanData['labor_id'] = $request->input('labor_id');
 
-        // Tambahkan admin_id jika diperlukan (contoh: admin yang menangani pengajuan)
-        $peminjamanData['admin_id'] = Auth::id(); // Misalnya, admin adalah pengguna yang sedang masuk
+        // Buat array data peminjaman
+        $peminjamanData = [
+            'labor_id' => $request->input('labor_id'),
+            'nama_peminjam' => $request->input('nama_peminjam'),
+            'tanggal_peminjaman' => $request->input('tanggal_peminjaman'),
+            'waktu_dipinjam' => $request->input('waktu_dipinjam'),
+            'keterangan' => $request->input('keterangan'),
+            'user_id' => Auth::id(),
+            'admin_id' => Auth::id(),
+            'foto_selfie' => $fotoSelfiePath,
+        ];
 
+        // Simpan data peminjaman ke dalam database
         PinjamLabor::create($peminjamanData);
 
-        return redirect()->route('pengajuan_labor.index')->with('toast_success', 'Pengajuan berhasil Diajukan');
-
+        // Redirect dengan pesan sukses
+        return redirect()->route('pengajuan.status')->with('toast_success', 'Pengajuan berhasil Diajukan');
     }
+
+
 
     /**
      * Display the specified resource.
      */
+
     public function show(PinjamLabor $pinjamLabor)
     {
         //
