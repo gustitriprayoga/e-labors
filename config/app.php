@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,7 +171,7 @@ return [
         // Spatie
         Spatie\Permission\PermissionServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        
+
 
 
     ])->toArray(),

@@ -16,16 +16,12 @@ return new class extends Migration
             $table->foreignId('labor_id');
             $table->foreignId('user_id');
             $table->foreignId('admin_id')->nullable(); // Kolom baru untuk admin_id
-            $table->string('nama_peminjam');
-            $table->date('tanggal_peminjaman');
-            $table->text('keterangan');
-            $table->text('keterangan_reject')->nullable();
-            $table->time('waktu_dipinjam');
-            $table->string('foto_selfie')->nullable();
-            $table->string('status')->default('diajukan');
+            $table->foreignId('role_id')->nullable(); // Role
+            
             $table->foreign('labor_id')->references('id')->on('labors');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('admin_id')->references('id')->on('users');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();
         });
     }

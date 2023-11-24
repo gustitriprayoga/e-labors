@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\LaborHistory;
 use App\Models\PengajuanLabor;
 use App\Models\PinjamLabor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PengajuanLaborController extends Controller
@@ -26,7 +28,10 @@ class PengajuanLaborController extends Controller
 
     public function accept($id)
     {
-        $peminjaman = PinjamLabor::find($id);
+        $time = Carbon::now()->timezone('Asia/Jakarta')->format('d-m-Y H:i:s');
+
+        $peminjaman = LaborHistory::where('pinjam_labor_id',$id)->first();
+        $peminjaman->tgl_persetujuan = $time ;
         $peminjaman->update(['status' => 'diterima']);
 
         return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman diterima.');

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\HistoryPeminjaman;
 use App\Models\PinjamLabor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Labor;
+use App\Models\LaborHistory;
+use Carbon\Carbon;
 
 class PinjamLaborController extends Controller
 {
@@ -24,6 +26,13 @@ class PinjamLaborController extends Controller
     public function status_pengajuan()
     {
         return view('pages.backend.user.labor.index');
+    }
+
+    public function historyPeminjaman()
+    {
+        $historyPeminjaman = LaborHistory::orderBy('created_at', 'desc')->get();
+
+        return view('pages.backend.history.index', compact('historyPeminjaman'));
     }
 
 
@@ -67,22 +76,43 @@ class PinjamLaborController extends Controller
         //     $fotoPath = $request->file('foto_labor')->store('foto_labors');
         //     $input['foto_labor'] = $fotoPath;
         // }
+        $time = Carbon::now()->timezone('Asia/Jakarta')->format('d-m-Y H:i:s');
+        // $day = Carbon::now()->timezone('Asia/Jakarta')->format('D');
 
+        dd($day);
+        try {
+            $peminjamanData = [
+                'labor_id' => $request->input('labor_id'),
+                'user_id' => Auth::id(),
+                'admin_id' => Auth::id(),
+                'role_id' => Auth::user()->roles->first()->id,
+            ];
+            $pinjamLaborID= PinjamLabor::create($peminjamanData);
+
+        } catch (\Throwable $th) {
+            // dd($th);
+            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan Peminjaman');
+        }
 
         // Buat array data peminjaman
-        $peminjamanData = [
-            'labor_id' => $request->input('labor_id'),
-            'nama_peminjam' => $request->input('nama_peminjam'),
-            'tanggal_peminjaman' => $request->input('tanggal_peminjaman'),
-            'waktu_dipinjam' => $request->input('waktu_dipinjam'),
-            'keterangan' => $request->input('keterangan'),
-            'user_id' => Auth::id(),
-            'admin_id' => Auth::id(),
-            'foto_selfie' => $fotoSelfiePath,
-        ];
 
-        // Simpan data peminjaman ke dalam database
-        PinjamLabor::create($peminjamanData);
+        try {
+            LaborHistory::create([
+                'pinjam_labor_id' => $pinjamLaborID->id,
+                'nama_peminjam' => $request->input('nama_peminjam'),
+                'tgl_pengajuan' => $time,
+                'tanggal_peminjaman' => $request->input('tanggal_peminjaman'),
+                'waktu_dipinjam' => $request->input('waktu_dipinjam'),
+                'keterangan' => $request->input('keterangan'),
+                'waktu_dipinjam' => $request->input('waktu_dipinjam'),
+                'foto_selfie' => $fotoSelfiePath,
+                'status' => 'diajukan',
+            ]);
+            // Simpan data peminjaman ke dalam database
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan Peminjaman Histori Tidak Timbul');
+        }
 
         // Redirect dengan pesan sukses
         return redirect()->route('pengajuan.status')->with('toast_success', 'Pengajuan berhasil Diajukan');

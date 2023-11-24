@@ -12,17 +12,7 @@ class PinjamLabor extends Model
     protected $table = 'pinjam_labors';
 
     // Tentukan atribut yang dapat diisi (fillable)
-    protected $fillable = [
-        'labor_id',
-        'nama_peminjam',
-        'tanggal_peminjaman',
-        'waktu_dipinjam',
-        'keterangan',
-        'user_id',
-        'admin_id',
-        'foto_selfie',
-        'status',
-    ];
+    protected $guarded = [];
 
     // Definisikan relasi One-to-One ke model PengajuanLabor
     public function pengajuanLabor()
@@ -33,5 +23,10 @@ class PinjamLabor extends Model
     public function labor()
     {
         return $this->belongsTo(Labor::class, 'labor_id', 'id');
+    }
+
+    public function historyLabor()
+    {
+        return $this->hasOne(LaborHistory::class);
     }
 }

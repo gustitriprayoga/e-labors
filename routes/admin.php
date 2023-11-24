@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\LaborController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\PengajuanLaborController;
 use App\Http\Controllers\Backend\PinjamLaborController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,12 +41,12 @@ Route::put('/admin/labors/{id}', [LaborController::class, 'update'])->middleware
 ##################
 
 
-Route::get('/admin/pengajuan_labor', [PengajuanLaborController::class, 'index'])->name('pengajuan_labor_admin.index');
-Route::get('/admin/pengajuan-labor/{id}', [PengajuanLaborController::class, 'show'])->name('pengajuan_labor.show');
-Route::get('/admin/pengajuan_labor/accept/{id}', [PengajuanLaborController::class, 'accept'])->name('pengajuan_labor_admin.accept');
+Route::get('/admin/pengajuan_labor', [PengajuanLaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor_admin.index');
+Route::get('/admin/pengajuan-labor/{id}', [PengajuanLaborController::class, 'show'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.show');
+Route::get('/admin/pengajuan_labor/accept/{id}', [PengajuanLaborController::class, 'accept'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor_admin.accept');
 // Route::post('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'reject'])->name('pengajuan_labor_admin.reject');
-Route::post('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'rejectPeminjaman'])->name('pengajuan_labor_admin.reject');
-Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengajuan'])->name('pengajuan.status');
+Route::post('/admin/pengajuan_labor/reject/{id}', [PengajuanLaborController::class, 'rejectPeminjaman'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor_admin.reject');
+Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengajuan'])->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('pengajuan.status');
 
 ###################
 ### Peminjaman ####
@@ -54,9 +55,12 @@ Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengaj
 ### INDEX ###
 
 // routes/web.php
-Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->name('pengajuan_labor.index');
-Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->name('pengajuan_labor.store');
+Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.index');
+Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.store');
 
 
+###############
+### HISTORY ###
+###############
 
-
+Route::get('/admmin/history-peminjaman', [PinjamLaborController::class, 'historyPeminjaman'])->name('history_peminjaman');

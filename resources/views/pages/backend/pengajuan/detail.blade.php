@@ -35,35 +35,40 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @include('pages.backend.pengajuan.popup.reject')
                         <tr>
                             <td>{{ $peminjaman->id }}</td>
-                            <td>{{ $peminjaman->nama_peminjam }}</td>
-                            <td>{{ $peminjaman->tanggal_peminjaman }}</td>
+                            <td>{{ $peminjaman->historyLabor->nama_peminjam }}</td>
+                            <td>{{ $peminjaman->historyLabor->tanggal_peminjaman }}</td>
                             <td>Sampai {{ $peminjaman->waktu_dipinjam }}</td>
-                            <td>{{ $peminjaman->keterangan }}</td>
-                            <td>{{ $peminjaman->keterangan_reject ?? 'Sedang Dalam Pengecekan' }}</td>
+                            <td>{{ $peminjaman->historyLabor->keterangan }}</td>
+                            <td>{{ $peminjaman->historyLabor->keterangan_reject ?? 'Sedang Dalam Pengecekan' }}</td>
                             <td>
-                                @if ($peminjaman->foto_selfie)
-                                    <img src="{{ asset('/storage/' . $peminjaman->foto_selfie) }}" alt="Foto Peminjam"
+                                {{-- @dd($peminjaman->historyLabor->foto_selfie) --}}
+                                @if ($peminjaman->historyLabor->foto_selfie)
+                                    <img src="{{ asset('/storage/' . $peminjaman->historyLabor->foto_selfie) }}" alt="Foto Peminjam"
                                         style="max-width: 100px;">
                                 @else
                                     Foto tidak tersedia
                                 @endif
                             </td>
                             <td>
-                                @if ($peminjaman->status == 'diajukan')
+                                @if ($peminjaman->historyLabor->status == 'diajukan')
                                     <span class="btn btn-warning">Diajukan</span>
-                                @elseif ($peminjaman->status == 'diterima')
+                                @elseif ($peminjaman->historyLabor->status == 'diterima')
                                     <span class="btn btn-success">Diterima</span>
-                                @elseif ($peminjaman->status == 'ditolak')
+                                @elseif ($peminjaman->historyLabor->status == 'ditolak')
                                     <span class="btn btn-danger">Ditolak</span>
                                 @endif
                             </td>
                             <td>
-                                @if ($peminjaman->status == 'diajukan')
-                                    <a href="{{ route('pengajuan_labor_admin.accept', $peminjaman->id) }}"
-                                        class="btn btn-success">Terima</a>
-                                @endif
+                                <a href="{{ route('pengajuan_labor_admin.accept', $peminjaman->id) }}"
+                                    class="btn btn-success">Terima</a>
+                                <a href="{{ route('pengajuan_labor_admin.reject', $peminjaman->id) }}"
+                                    class="btn btn-primary" data-bs-target="#rejectpopup{{ $peminjaman->id }}"
+                                    data-bs-toggle="modal">
+                                    <i class="fe fe-plus-circle"></i> Tolak
+                                </a>
                             </td>
                         </tr>
                     </tbody>

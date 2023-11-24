@@ -167,7 +167,42 @@
                     <h3>Misc Pages</h3>
                 </li>
                 {{-- USER PROFILE --}}
-
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                            class="side-menu__icon fe fe-users"></i><span class="side-menu__label">History</span><i
+                            class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li class="panel sidetab-menu">
+                            <div class="tab-menu-heading p-0 pb-2 border-0">
+                                <div class="tabs-menu ">
+                                    <!-- Tabs -->
+                                    <ul class="nav panel-tabs">
+                                        <li><a href="#side21" class="d-flex active" data-bs-toggle="tab"><i
+                                                    class="fe fe-monitor me-2"></i>
+                                                <p>Home</p>
+                                            </a></li>
+                                        <li><a href="#side22" data-bs-toggle="tab" class="d-flex"><i
+                                                    class="fe fe-message-square me-2"></i>
+                                                <p>Chat</p>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body tabs-menu-body p-0 border-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="side21">
+                                        <ul class="sidemenu-list">
+                                            <li class="side-menu-label1"><a
+                                                    href="javascript:void(0)">History</a></li>
+                                            <li><a href="{{route('history_peminjaman')}}" class="slide-item"> Peminjaman Labor</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Profile</span><i
