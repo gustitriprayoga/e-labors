@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\LaborController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\PengajuanLaborController;
 use App\Http\Controllers\Backend\PinjamLaborController;
+use App\Http\Controllers\Backend\LaborJadwalController;
 use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,8 +54,6 @@ Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengaj
 ###################
 
 ### INDEX ###
-
-// routes/web.php
 Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.index');
 Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.store');
 
@@ -64,3 +63,15 @@ Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->m
 ###############
 
 Route::get('/admmin/history-peminjaman', [PinjamLaborController::class, 'historyPeminjaman'])->name('history_peminjaman');
+
+###############
+### JADWAL  ###
+###############
+
+// Route::get('//jadwal', [LaborLaborJadwalController::class. 'index'])->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('jadwal.labor.labor.index');
+Route::get('/jadwal', [LaborJadwalController::class, 'index'])->name('jadwal.labor.index');
+Route::get('/jadwal/create', [LaborJadwalController::class, 'create'])->name('jadwal.labor.create');
+Route::post('/jadwal', [LaborJadwalController::class, 'store'])->name('jadwal.labor.store');
+Route::get('/jadwal/{jadwal}/edit', [LaborJadwalController::class, 'edit'])->name('jadwal.labor.edit');
+Route::put('/jadwal/{jadwal}', [LaborJadwalController::class, 'update'])->name('jadwal.labor.update');
+Route::delete('/jadwal/{jadwal}', [LaborJadwalController::class, 'destroy'])->name('jadwal.labor.destroy');

@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('labor_jadwals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('labor_id');
+            $table->string('hari');
+            $table->string('prodi');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
+            $table->string('nama_dosen');
+
+            $table->foreign('labor_id')->references('id')->on('labors');
             $table->timestamps();
         });
     }

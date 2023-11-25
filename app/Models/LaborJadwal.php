@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaborJadwal extends Model
 {
-    use HasFactory;
+    protected $table = 'labor_jadwals';
+
+    // Tentukan atribut yang dapat diisi (fillable)
+    protected $guarded = [];
+
+    public function labor()
+    {
+        return $this->belongsTo(Labor::class);
+    }
 }

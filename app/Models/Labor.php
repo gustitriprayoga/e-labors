@@ -17,5 +17,9 @@ class Labor extends Model
         return $this->hasMany(Peminjaman::class);
     }
 
+    public function laborjadwal()
+    {
+        return $this->hasMany(LaborJadwal::class);
+    }
 
 }
