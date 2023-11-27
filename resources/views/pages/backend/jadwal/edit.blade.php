@@ -31,47 +31,41 @@
 
                 <form action="{{ route('jadwal.labor.update', $jadwal->id) }}" method="post">
                     @csrf
-                    @method('PUT')  <!-- Use 'PUT' method for updating -->
+                    @method('PUT')
 
-
-                    <div class="form-group">
-                        <label for="labor_id">labor</label>
-                        <input type="text" class="form-control" name="labor_id" value="{{ $jadwal->labor->nama_labor }}" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="hari">Hari:</label>
-                        <select name="hari" class="form-control">
-                            <!-- Add options for each day -->
+                    <div class="mb-3">
+                        <label for="hari" class="form-label">Hari</label>
+                        <select name="hari" class="form-control" required>
                             <option value="Senin" {{ $jadwal->hari == 'Senin' ? 'selected' : '' }}>Senin</option>
                             <option value="Selasa" {{ $jadwal->hari == 'Selasa' ? 'selected' : '' }}>Selasa</option>
                             <option value="Rabu" {{ $jadwal->hari == 'Rabu' ? 'selected' : '' }}>Rabu</option>
                             <option value="Kamis" {{ $jadwal->hari == 'Kamis' ? 'selected' : '' }}>Kamis</option>
                             <option value="Jumat" {{ $jadwal->hari == 'Jumat' ? 'selected' : '' }}>Jumat</option>
                             <option value="Sabtu" {{ $jadwal->hari == 'Sabtu' ? 'selected' : '' }}>Sabtu</option>
-                            <!-- Add options for other days -->
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="prodi">Prodi:</label>
-                        <input type="text" class="form-control" name="prodi" value="{{ $jadwal->prodi }}">
+                    <div class="mb-3">
+                        <label for="prodi">Prodi</label>
+                        <input type="text" class="form-control" id="prodi" name="prodi" value="{{ $jadwal->prodi }}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="jam_mulai">Jam Mulai:</label>
-                        <input type="time" class="form-control" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
+                    <div class="mb-3">
+                        <label for="jam_mulai">Jam Mulai</label>
+                        <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="jam_selesai">Jam Selesai:</label>
-                        <input type="time" class="form-control" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
+                    <div class="mb-3">
+                        <label for="jam_selesai">Jam Selesai</label>
+                        <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="nama_dosen">Nama Dosen:</label>
-                        <input type="text" class="form-control" name="nama_dosen" value="{{ $jadwal->nama_dosen }}">
+                    <div class="mb-3">
+                        <label for="nama_dosen">Nama Dosen</label>
+                        <input type="text" class="form-control" id="nama_dosen" name="nama_dosen" value="{{ $jadwal->nama_dosen }}">
                     </div>
+
+                    <!-- Add other form fields as needed -->
 
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>

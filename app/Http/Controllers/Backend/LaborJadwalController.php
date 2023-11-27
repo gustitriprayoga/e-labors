@@ -60,37 +60,53 @@ class LaborJadwalController extends Controller
      */
     public function edit($id)
     {
-        $jadwal = LaborJadwal::findOrFail($id);
-        $labors = Labor::all();
-        return view('pages.backend.jadwal.edit', compact('jadwal','labors'));
+        $jadwal = LaborJadwal::find($id);
+
+        if (!$jadwal) {
+            return redirect()->route('jadwal.labor.index')->with('toast_error', 'Jadwal not found');
+        }
+
+        // Assuming you want to fetch some additional data, like the list of labs
+        $labs = Labor::all();
+
+        return view('pages.backend.jadwal.edit', compact('jadwal', 'labs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LaborJadwal $laborJadwal)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'labor_id' => 'required',
             'hari' => 'required',
             'prodi' => 'required',
             'jam_mulai' => 'required',
             'jam_selesai' => 'required',
             'nama_dosen' => 'required',
+            // Add other validation rules as needed
         ]);
 
-        $laborJadwal->update($request->all());
+        $input = $request->all();
 
-        return redirect()->route('jadwal.labor.index')->with('toast_success', 'Jadwal berhasil diperbarui');
+        $jadwal = LaborJadwal::find($id);
 
+        if (!$jadwal) {
+            return redirect()->route('jadwal.labor.index')->with('toast_error', 'Jadwal not found');
+        }
+
+        $jadwal->update($input);
+
+        return redirect()->route('jadwal.labor.index')->with('toast_success', 'Jadwal updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(LaborJadwal $laborJadwal)
+    public function destroy(LaborJadwal $laborJadwal, $id)
     {
+        $laborJadwal = LaborJadwal::findOrFail($id);
         $laborJadwal->delete();
+
 
         return redirect()->route('jadwal.labor.index')->with('toast_success', 'Jadwal berhasil dihapus');
     }

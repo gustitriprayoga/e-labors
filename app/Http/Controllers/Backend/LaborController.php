@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Labor;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -52,7 +53,6 @@ class LaborController extends Controller
         }
 
         return redirect()->route('labor.index')->with('toast_success', 'Task Created Successfully!');
-
     }
 
     /**
@@ -102,8 +102,11 @@ class LaborController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Labor $labor)
+    public function destroy(Labor $labor, $id)
     {
-        //
+        $labor = Labor::findOrFail($id);
+        $labor->delete();
+
+        return redirect()->route('labor.index')->with('toast_success', 'Data Labor Berhasil Di Hapus');
     }
 }

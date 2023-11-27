@@ -14,17 +14,19 @@
     {{-- ROW END --}}
 
     @role('admin|asisten')
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title text-danger">Harap Di Perhatikan!</h4> <br>
-            <span>Jadwal Ini Akan Terlihat Di Bagian Depan Web</span>
+        <div class="card">
+            <div class="card-header">
+                <marquee behavior="" direction="">
+                    <h4 class="card-title text-danger mr-5">Harap Di Perhatikan! <span class="text-white">Jadwal Ini Akan Terlihat Di Bagian Depan Web</span></h4>
+
+                </marquee>
+            </div>
         </div>
-    </div>
         <div class="card">
             <div class="card-header justify-content-between  ">
                 <h4 class="card-title">Jadwal Labor</h4>
                 @role('admin|asisten')
-                <a class="btn btn-primary btn-sm" href="{{ route('jadwal.labor.create') }}">Tambah Jadwal</a>
+                    <a class="btn btn-primary" href="{{ route('jadwal.labor.create') }}">Tambah Jadwal</a>
                 @endrole
             </div>
             <div class="card-body">
@@ -42,24 +44,26 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="align-center justify-item-center">
+                        <tbody class="content-center">
                             @foreach ($jadwals as $jadwal)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    
+
                                     <td>{{ $jadwal->labor->nama_labor }}</td>
                                     <td>{{ $jadwal->hari }}</td>
                                     <td>{{ $jadwal->prodi }}</td>
-                                    <td> <a class="btn btn-success btn-sm">{{ $jadwal->jam_mulai }}</a></td>
-                                    <td>{{ $jadwal->jam_selesai }}</td>
+                                    <td> <span class="btn btn-success btn-sm">{{ $jadwal->jam_mulai }}</span></td>
+                                    <td><span class="btn btn-danger btn-sm">{{ $jadwal->jam_selesai }}</span></td>
                                     <td>{{ $jadwal->nama_dosen }}</td>
                                     <td>
                                         <!-- Tambahkan tombol aksi sesuai kebutuhan -->
                                         <a href="{{ route('jadwal.labor.edit', $jadwal->id) }}" class="btn btn-primary">Edit</a>
-                                        <form action="{{ route('jadwal.labor.destroy', $jadwal->id) }}" method="POST" style="display: inline;">
+                                        <form action="{{ route('jadwal.labor.destroy', $jadwal->id) }}" method="POST"
+                                            style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Apakah Anda yakin?')">Hapus</button>
 
                                         </form>
                                     </td>
