@@ -63,17 +63,15 @@
                              </ul>
                          </li>
                          <li><a href="contact-us.html">Contact Us</a></li>
-                         <li><a class="btn btn-dark  btn-shadow btn-sm text-white" target="_blank"
-                                 href="{{ route('login') }}">login</a></li>
-                         @if (auth()->check())
+                         @auth
                              {{-- User is authenticated (logged in) --}}
                              <li><a class="btn btn-dark btn-shadow btn-sm text-white"
                                      href="{{ route('dashboard') }}">Dashboard</a></li>
                          @else
                              {{-- User is not authenticated (not logged in) --}}
-                             <li><a class="btn btn-dark btn-shadow btn-sm text-white"
-                                     href="{{ route('login') }}">Login</a></li>
-                         @endif
+                             <li><a class="btn btn-dark btn-shadow btn-sm text-white" href="{{ route('login') }}">Login</a>
+                             </li>
+                         @endauth
                      </ul>
                  </div>
              </div>

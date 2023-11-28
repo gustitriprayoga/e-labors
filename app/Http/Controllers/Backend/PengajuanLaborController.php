@@ -18,20 +18,31 @@ class PengajuanLaborController extends Controller
     {
         $peminjamans = PinjamLabor::all();
         return view('pages.backend.pengajuan.index', compact('peminjamans'));
+
     }
 
     public function status_pengajuan()
     {
-        $peminjamans = PinjamLabor::all();
+        // Ambil Data Labor History
+        $laborHistories = LaborHistory::where('pinjam_labor_id', auth()->user()->id)->get();
+
+        // Ambil Database Pinjam Labor
+        $pinjamLabors = PinjamLabor::where('user_id', auth()->user()->id)->get();
+
+        // menjadikan satu variabel
+        $peminjamans = $laborHistories->concat($pinjamLabors);
+
+        // // $peminjamans = PinjamLabor::all();
+        // $peminjamans = PinjamLabor::where('user_id', auth()->user()->id)->get();
         return view('pages.backend.pengajuan.status_pengajuan', compact('peminjamans'));
     }
 
     public function accept($id)
     {
-        $time = Carbon::now()->timezone('Asia/Jakarta')->format('d-m-Y H:i:s');
+        $time = Carbon::now()->timezone('Asia/Jakarta');
 
-        $peminjaman = LaborHistory::where('pinjam_labor_id',$id)->first();
-        $peminjaman->tgl_persetujuan = $time ;
+        $peminjaman = LaborHistory::where('pinjam_labor_id', $id)->first();
+        $peminjaman->tgl_persetujuan = $time;
         $peminjaman->update(['status' => 'diterima']);
 
         return redirect()->route('pengajuan_labor_admin.index')->with('success', 'Peminjaman diterima.');

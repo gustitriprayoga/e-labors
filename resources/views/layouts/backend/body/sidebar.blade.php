@@ -121,7 +121,7 @@
                 </li>
                 @endrole
 
-                @role('admin|asisten|user')
+                @role('user|admin')
                 {{-- PEMINJAMAN --}}
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i

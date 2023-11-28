@@ -29,7 +29,7 @@
                         @foreach ($peminjamans as $peminjaman)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $peminjaman->labor->nama_labor }}</td>
+                                <td>{{ $peminjaman->labor->nama_labor  ?? 'Labor Tidak Ditemukan' }}</td>
                                 <td>{{ $peminjaman->nama_peminjam }}</td>
                                 <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                 <td>{{ $peminjaman->keterangan }}</td>
@@ -47,6 +47,7 @@
                                         <span class="btn btn-warning">Diajukan</span>
                                     @elseif ($peminjaman->status == 'diterima')
                                         <span class="btn btn-success">Diterima</span>
+                                        <a class="btn btn-success" href="https://api.whatsapp.com/send?phone=6285156482767&text=Halo%20Admin%20%2C%20Saya%20Sudah%20Di%20Setujui%20Untuk%20Peminjaman%20Labor%20!" target="_blank">Hubungi</a>
                                     @elseif ($peminjaman->status == 'ditolak')
                                         <span class="btn btn-danger">Ditolak</span>
                                     @endif

@@ -77,9 +77,9 @@ class PinjamLaborController extends Controller
         //     $input['foto_labor'] = $fotoPath;
         // }
         $time = Carbon::now()->timezone('Asia/Jakarta')->format('d-m-Y H:i:s');
-        // $day = Carbon::now()->timezone('Asia/Jakarta')->format('D');
+        $day = Carbon::now()->timezone('Asia/Jakarta')->format('D');
 
-        dd($day);
+        // dd($day);
         try {
             $peminjamanData = [
                 'labor_id' => $request->input('labor_id'),

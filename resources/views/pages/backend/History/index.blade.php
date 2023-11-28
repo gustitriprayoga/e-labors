@@ -32,7 +32,8 @@
                                 <th>Tanggal Pengajuan</th>
                                 <th>Tanggal Persetujuan</th>
                                 <th>Waktu Peminjaman</th>
-                                <th>Hari Peminjaman</th>
+                                <th>Foto Peminjam</th>
+                                {{-- <th>Hari Peminjaman</th> --}}
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -42,12 +43,28 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $peminjaman->pinjamLabor->labor->nama_labor }}</td>
                                     <td>{{ $peminjaman->nama_peminjam }}</td>
-                                    <td>{{ $peminjaman->yangMenyetujui->name ?? 'Belum Disetujui' }}</td>
+                                    <td>{{ Auth::user()->name }} <span> {{ $peminjaman->yangMenyetujui }}</td>
                                     <td>{{ $peminjaman->tgl_pengajuan }}</td>
                                     <td>{{ $peminjaman->tgl_persetujuan ?? 'Belum Disetujui' }}</td>
                                     <td>{{ $peminjaman->waktu_dipinjam }}</td>
-                                    <td>{{ $peminjaman->hari_dipinjam }}</td>
-                                    <td>{{ $peminjaman->status }}</td>
+                                    <td>
+                                        @if ($peminjaman->foto_selfie)
+                                            <img src="{{ asset('/storage/' . $peminjaman->foto_selfie) }}"
+                                                alt="Foto Peminjam" style="max-width: 100px;">
+                                        @else
+                                            Foto tidak tersedia
+                                        @endif
+                                    </td>
+                                    {{-- <td>{{ $peminjaman->hari_dipinjam }}</td> --}}
+                                    <td>
+                                        @if ($peminjaman->status == 'diajukan')
+                                            <span class="btn btn-warning">Diajukan</span>
+                                        @elseif ($peminjaman->status == 'diterima')
+                                            <span class="btn btn-success">Diterima</span>
+                                        @elseif ($peminjaman->status == 'ditolak')
+                                            <span class="btn btn-danger">Ditolak</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

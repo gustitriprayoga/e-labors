@@ -168,6 +168,15 @@
 <script src="{{ asset('asset/backend/plugins/multipleselect/multiple-select.js') }}"></script>
 <script src="{{ asset('asset/backend/plugins/multipleselect/multi-select.js') }}"></script>
 
+<!-- INTERNAL Bootstrap-Datepicker js-->
+<script src="{{asset('asset/backend/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+
+<!-- BOOTSTRAP-DATERANGEPICKER JS -->
+<script src="{{asset('asset/backend/plugins/bootstrap-daterangepicker/moment.min.js')}}"></script>
+
+<!-- INTERNAL Bootstrap-Datepicker js-->
+<script src="{{asset('asset/backend/plugins/bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
+
 {{--
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>

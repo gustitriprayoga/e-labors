@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class LaborHistory extends Model
 {
@@ -28,9 +29,14 @@ class LaborHistory extends Model
         return $this->belongsTo(PinjamLabor::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     // Relasi ke model Role (Yang Menyetujui)
-    // public function yangMenyetujui()
-    // {
-    //     return $this->belongsTo(Role::class);
-    // }
+    public function yangMenyetujui()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

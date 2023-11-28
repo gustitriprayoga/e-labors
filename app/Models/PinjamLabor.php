@@ -15,6 +15,7 @@ class PinjamLabor extends Model
     protected $guarded = [];
 
     // Definisikan relasi One-to-One ke model PengajuanLabor
+
     public function pengajuanLabor()
     {
         return $this->belongsTo(PengajuanLabor::class, 'pengajuan_labor_id');

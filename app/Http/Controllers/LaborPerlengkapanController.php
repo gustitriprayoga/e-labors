@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PerlengkapanLabor;
+use App\Models\LaborPerlengkapan;
 use Illuminate\Http\Request;
 
-class PerlengkapanLaborController extends Controller
+class LaborPerlengkapanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class PerlengkapanLaborController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PerlengkapanLabor $perlengkapanLabor)
+    public function show(LaborPerlengkapan $laborPerlengkapan)
     {
         //
     }
@@ -42,7 +42,7 @@ class PerlengkapanLaborController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PerlengkapanLabor $perlengkapanLabor)
+    public function edit(LaborPerlengkapan $laborPerlengkapan)
     {
         //
     }
@@ -50,7 +50,7 @@ class PerlengkapanLaborController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PerlengkapanLabor $perlengkapanLabor)
+    public function update(Request $request, LaborPerlengkapan $laborPerlengkapan)
     {
         //
     }
@@ -58,7 +58,7 @@ class PerlengkapanLaborController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PerlengkapanLabor $perlengkapanLabor)
+    public function destroy(LaborPerlengkapan $laborPerlengkapan)
     {
         //
     }

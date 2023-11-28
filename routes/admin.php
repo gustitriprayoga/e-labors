@@ -54,8 +54,8 @@ Route::get('/pengajuan/status', [PengajuanLaborController::class, 'status_pengaj
 ###################
 
 ### INDEX ###
-Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.index');
-Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('pengajuan_labor.store');
+Route::get('/user/pengajuan_labor', [PinjamLaborController::class, 'index'])->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('pengajuan_labor.index');
+Route::post('/user/pengajuan_labor', [PinjamLaborController::class, 'store'])->middleware(['auth', 'verified', 'role:asisten|admin|user'])->name('pengajuan_labor.store');
 
 
 ###############

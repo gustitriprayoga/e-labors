@@ -36,17 +36,17 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $peminjaman->labor->nama_labor }}</td>
-                                <td>{{ $peminjaman->nama_peminjam }}</td>
+                                <td>{{ $peminjaman->historyLabor->nama_peminjam }}</td>
                                 <td>
-                                    @if ($peminjaman->status == 'diajukan')
+                                    @if ($peminjaman->historyLabor->status == 'diajukan')
                                         <span class="btn btn-warning">Diajukan</span>
-                                    @elseif ($peminjaman->status == 'diterima')
+                                    @elseif ($peminjaman->historyLabor->status == 'diterima')
                                         <span class="btn btn-success">Diterima</span>
-                                    @elseif ($peminjaman->status == 'ditolak')
+                                    @elseif ($peminjaman->historyLabor->status == 'ditolak')
                                         <span class="btn btn-danger">Ditolak</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="align-center">
                                     <a href="{{ route('pengajuan_labor.show', $peminjaman->id) }}"
                                         class="btn btn-success">Detail</a>
                                 </td>

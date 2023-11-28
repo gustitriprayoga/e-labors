@@ -13,12 +13,11 @@
     </div>
     {{-- ROW END --}}
 
-    @role('admin|asisten')
+    @role('admin|asisten|user')
         <div class="card">
             <div class="card-header">
-                <marquee behavior="" direction="">
+                <marquee>
                     <h4 class="card-title text-danger mr-5">Harap Di Perhatikan! <span class="text-white">Jadwal Ini Akan Terlihat Di Bagian Depan Web</span></h4>
-
                 </marquee>
             </div>
         </div>
@@ -31,7 +30,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                    <table class="table table-bordered text-nowrap border-bottom center" id="basic-datatable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -44,7 +43,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="content-center">
+                        <tbody class="">
                             @foreach ($jadwals as $jadwal)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -52,8 +51,8 @@
                                     <td>{{ $jadwal->labor->nama_labor }}</td>
                                     <td>{{ $jadwal->hari }}</td>
                                     <td>{{ $jadwal->prodi }}</td>
-                                    <td> <span class="btn btn-success btn-sm">{{ $jadwal->jam_mulai }}</span></td>
-                                    <td><span class="btn btn-danger btn-sm">{{ $jadwal->jam_selesai }}</span></td>
+                                    <td><span class="btn btn-success btn-sm">{{ $jadwal->jam_mulai }}</span></td>
+                                    <td ><span class="btn btn-danger btn-sm">{{ $jadwal->jam_selesai }}</span></td>
                                     <td>{{ $jadwal->nama_dosen }}</td>
                                     <td>
                                         <!-- Tambahkan tombol aksi sesuai kebutuhan -->
