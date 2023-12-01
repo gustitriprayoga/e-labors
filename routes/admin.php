@@ -6,7 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\PengajuanLaborController;
 use App\Http\Controllers\Backend\PinjamLaborController;
 use App\Http\Controllers\Backend\LaborJadwalController;
+use App\Http\Controllers\Backend\LaborPerlengkapanController;
 use App\Http\Controllers\PeminjamanController;
+use App\Models\LaborPerlengkapan;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,6 +37,7 @@ Route::get('/admin/labors/{id}', [LaborController::class, 'show'])->middleware([
 ### EDIT ###
 Route::get('/admin/labors/{id}/edit', [LaborController::class, 'edit'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.edit');
 Route::put('/admin/labors/{id}', [LaborController::class, 'update'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.update');
+Route::delete('/admin/labors/{id}', [LaborController::class, 'destroy'])->middleware(['auth', 'verified', 'role:asisten|admin'])->name('labors.destroy');
 
 
 ##################
@@ -75,3 +78,16 @@ Route::post('/jadwal', [LaborJadwalController::class, 'store'])->name('jadwal.la
 Route::get('/jadwal/{jadwal}/edit', [LaborJadwalController::class, 'edit'])->name('jadwal.labor.edit');
 Route::put('/jadwal/{jadwal}', [LaborJadwalController::class, 'update'])->name('jadwal.labor.update');
 Route::delete('/jadwal/{jadwal}', [LaborJadwalController::class, 'destroy'])->name('jadwal.labor.destroy');
+
+##################
+## Perlengkapan ##
+##################
+
+Route::get('/admin/perlengkapan', [LaborPerlengkapanController::class, 'index'])->name('perlengkapan.index');
+Route::get('/admin/perlengkapan/create', [LaborPerlengkapanController::class, 'create'])->name('perlengkapan.create');
+Route::post('/admin/perlengkapan', [LaborPerlengkapanController::class, 'store'])->name('perlengkapan.store');
+Route::get('/admin/perlengkapan/{perlengkapan}/edit', [LaborPerlengkapanController::class, 'edit'])->name('perlengkapan.edit');
+Route::put('/admin/perlengkapan/{perlengkapan}', [LaborPerlengkapanController::class, 'update'])->name('perlengkapan.update');
+Route::delete('/admin/perlengkapan/{perlengkapan}', [LaborPerlengkapanController::class, 'destroy'])->name('perlengkapan.destroy');
+
+

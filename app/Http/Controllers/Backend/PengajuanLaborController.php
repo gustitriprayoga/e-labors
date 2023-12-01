@@ -32,6 +32,8 @@ class PengajuanLaborController extends Controller
         // menjadikan satu variabel
         $peminjamans = $laborHistories->concat($pinjamLabors);
 
+        
+
         // // $peminjamans = PinjamLabor::all();
         // $peminjamans = PinjamLabor::where('user_id', auth()->user()->id)->get();
         return view('pages.backend.pengajuan.status_pengajuan', compact('peminjamans'));

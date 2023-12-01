@@ -47,7 +47,7 @@
                      </div>
                      <ul class="nav navbar-nav navbar navbar-left">
                          <li><a href="index.html">Home</a></li>
-                         <li><a href="about-us.html">About Us</a></li>
+                         {{-- <li><a href="about-us.html">About Us</a></li>
                          <li class="sub-menu-down"><a href="javascript:void(0);">Jobs</a>
                              <ul class="sub-menu">
                                  <li><a href="jobs-grid.html">Jobs Grid</a></li>
@@ -62,7 +62,7 @@
                                  <li><a href="blog-details.html">Blog Details</a></li>
                              </ul>
                          </li>
-                         <li><a href="contact-us.html">Contact Us</a></li>
+                         <li><a href="contact-us.html">Contact Us</a></li> --}}
                          @auth
                              {{-- User is authenticated (logged in) --}}
                              <li><a class="btn btn-dark btn-shadow btn-sm text-white"

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('labor_perlengkapans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_perlengkapan');
+            $table->integer('jumlah_perlengkapan');
+            $table->string('kondisi_bagus');
+            $table->string('kondisi_tbagus');
+            $table->string('keterangan');
+            $table->foreignId('labor_id')->constrained('labors')->onDelete('cascade');
             $table->timestamps();
         });
     }

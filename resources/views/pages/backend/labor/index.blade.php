@@ -54,9 +54,14 @@
                                         <div class="d-flex">
                                             <a href="{{ route('labors.edit', $labor->id) }}"
                                                 class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                                    class="fa fa-trash"></i></a>
+                                                    class="fa fa-edit" info="Edit"> Edit</i></a>
+                                                    <form action="{{ route('labors.destroy', $labor->id) }}" method="POST"
+                                                        style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Apakah Anda yakin?')"><i class="fa fa-trash">Hapus</i></button>
+                                                    </form>
                                         </div>
                                     </td>
                                 </tr>

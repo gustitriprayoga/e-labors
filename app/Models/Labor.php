@@ -27,5 +27,10 @@ class Labor extends Model
         return $this->hasMany(LaborHistory::class, 'foto_selfie');
     }
 
+    public function LaborPerlengkapan()
+    {
+        return $this->hasMany(LaborPerlengkapan::class);
+    }
+
 
 }
