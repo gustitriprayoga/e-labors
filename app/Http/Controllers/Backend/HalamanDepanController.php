@@ -94,8 +94,10 @@ class HalamanDepanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, HalamanDepan $halamanDepan, $id)
+    public function update(Request $request, $id)
     {
+        // dd($request->all());
+
         $request->validate([
             'judul_atas_kecil' => 'required',
             'judul_atas_besar' => 'required',

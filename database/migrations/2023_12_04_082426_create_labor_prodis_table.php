@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_prodi');
             $table->string('kode_prodi');
+            $table->string('logo_prodi')->nullable();
             $table->foreignId('labor_fakultas_id')->constrained();
             $table->timestamps();
         });

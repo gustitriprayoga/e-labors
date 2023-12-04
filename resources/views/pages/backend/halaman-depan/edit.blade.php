@@ -37,14 +37,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="foto_halamandepan">Foto Laboratorium:</label>
+                    <label for="judul_atas_foto">Foto Laboratorium:</label>
                     <td>
                         @if ($halamanDepan->judul_atas_foto)
                             <img src="{{ asset('/storage/'.$halamanDepan->judul_atas_foto) }}" alt="Foto Laboratorium" width="500" height="500">
                         @else
                             No Photo
                         @endif
-                    <input type="file" name="foto_halamandepan" class="form-control-file">
+                    <input type="file" name="judul_atas_foto" class="form-control-file">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update Laboratorium</button>

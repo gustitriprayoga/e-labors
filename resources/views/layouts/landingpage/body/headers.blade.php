@@ -139,10 +139,10 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 my-auto">
                                 @if ($hd->judul_atas_foto)
-                                    <img src="{{ asset('/storage/'.$hd->judul_atas_foto) }}" alt="Foto Laboratorium"  width="500" height="500">
+                                    <img src="{{ asset('/storage/'.$hd->judul_atas_foto) }}" class=" rounded-5" alt="Foto Laboratorium">
 
                                     @else
-                                    <img src="{{asset('asset/backend/images/landing/3.png')}}" alt="">
+                                    <img src="{{asset('asset/img/maxresdefault.jpg')}}" class=" rounded-5 shadow-lg " alt="">
                                 @endif
                             </div>
                         </div>
