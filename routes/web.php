@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Backend\HalamanDepanController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Frontend;
+use App\Models\HalamanDepan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('pages.frontend.welcome');
 // });
 
-Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/', [HalamanDepanController::class, 'halamandepan'])->name('frontend.index');
 
 ##################
 ### PEMINJAMAN ###

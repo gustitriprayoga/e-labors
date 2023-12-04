@@ -33,4 +33,10 @@ class Labor extends Model
     }
 
 
+    public function HalamanDepan()
+    {
+        return $this->hasMany(HalamanDepan::class);
+    }
+
+
 }

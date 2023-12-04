@@ -21,6 +21,13 @@ class LaborController extends Controller
         return view('pages.backend.labor.index', compact('labors'));
     }
 
+    public function halamandepan(){
+
+        $labs = Labor::all();
+
+        return view('pages.frontend.landingpage', compact('halamanDepan, labs'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -17,7 +17,7 @@ class FrontendController extends Controller
     {
         $labors = Labor::all();
 
-        return view('pages.frontend.welcome', compact('labors'));
+        return view('pages.frontend.landingpage', compact('labors'));
     }
 
     /**

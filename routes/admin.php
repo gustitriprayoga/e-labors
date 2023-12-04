@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\PengajuanLaborController;
 use App\Http\Controllers\Backend\PinjamLaborController;
 use App\Http\Controllers\Backend\LaborJadwalController;
 use App\Http\Controllers\Backend\LaborPerlengkapanController;
+use App\Http\Controllers\Backend\HalamanDepanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Models\LaborPerlengkapan;
 use Illuminate\Support\Facades\Route;
@@ -90,4 +91,15 @@ Route::get('/admin/perlengkapan/{perlengkapan}/edit', [LaborPerlengkapanControll
 Route::put('/admin/perlengkapan/{perlengkapan}', [LaborPerlengkapanController::class, 'update'])->name('perlengkapan.update');
 Route::delete('/admin/perlengkapan/{perlengkapan}', [LaborPerlengkapanController::class, 'destroy'])->name('perlengkapan.destroy');
 
+
+##################
+## Perlengkapan ##
+##################
+
+Route::get('/admin/halamandepan', [HalamanDepanController::class, 'index'])->name('halamandepan.index');
+Route::get('/admin/halamandepan/create', [HalamanDepanController::class, 'create'])->name('halamandepan.create');
+Route::post('/admin/halamandepan', [HalamanDepanController::class, 'store'])->name('halamandepan.store');
+Route::get('/admin/halamandepan/{halamandepan}/edit', [HalamanDepanController::class, 'edit'])->name('halamandepan.edit');
+Route::put('/admin/halamandepan/{halamandepan}', [HalamanDepanController::class, 'update'])->name('halamandepan.update');
+Route::delete('/admin/halamandepan/{halamandepan}', [HalamanDepanController::class, 'destroy'])->name('halamandepan.destroy');
 

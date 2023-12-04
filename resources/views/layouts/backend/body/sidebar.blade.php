@@ -293,6 +293,47 @@
                 {{-- USER PROFILE --}}
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                            class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Halaman Depan</span><i
+                            class="angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li class="panel sidetab-menu">
+                            <div class="tab-menu-heading p-0 pb-2 border-0">
+                                <div class="tabs-menu ">
+                                    <!-- Tabs -->
+                                    <ul class="nav panel-tabs">
+                                        <li><a href="#side21" class="d-flex active" data-bs-toggle="tab"><i
+                                                    class="fe fe-monitor me-2"></i>
+                                                <p>Home</p>
+                                            </a></li>
+                                        <li><a href="#side22" data-bs-toggle="tab" class="d-flex"><i
+                                                    class="fe fe-message-square me-2"></i>
+                                                <p>Chat</p>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body tabs-menu-body p-0 border-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="side21">
+                                        <ul class="sidemenu-list">
+                                            <li class="side-menu-label1"><a
+                                                    href="javascript:void(0)">Authentication</a></li>
+                                            <li><a href="{{Route('halamandepan.index')}}" class="slide-item"> Setting</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @endrole
+
+
+                @role('admin|role|user')
+                {{-- USER PROFILE --}}
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Profile</span><i
                             class="angle fe fe-chevron-right"></i>
                     </a>
@@ -329,6 +370,7 @@
                 </li>
             </ul>
             @endrole
+
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                     width="24" height="24" viewBox="0 0 24 24">
                     <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z" />
